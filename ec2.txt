@@ -1,0 +1,11 @@
+para criar uma máquina virtual EC2 (Elastic Compute Cloud)
+acessar o painel do EC2, executar instâncias, escolher setup da instância,
+gerar par de credenciais (isso gerará um arquivo .pem)
+- nome: API-Go-Dev
+
+banco de dados com RDS (relational database service)
+- nome: API-Go-Dev
+- usuário: postgres
+- senha: admin#admin4040
+
+vpc: vpc-06b76b401d40902f6
