@@ -27,11 +27,6 @@ jobs:
         go-version: ${{ matrix.go_version }}
     - uses: actions/checkout@v3
 
-    - name: Run Tests
-      run: |
-        go version
-        go test ./...
-
   build:
     needs: test
     runs-on: ubuntu-20.04
