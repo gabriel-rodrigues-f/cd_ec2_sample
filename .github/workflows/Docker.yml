@@ -24,9 +24,7 @@ jobs:
   # uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
       uses: docker/login-action@v2.0.0
       with:
-    # Username used to log against the Docker registry
-        username: gabrielvrfreire
-    # Password or personal access token used to log against the Docker registry
+        username: gabriel.vr.freire@gmail.com
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
         
         
