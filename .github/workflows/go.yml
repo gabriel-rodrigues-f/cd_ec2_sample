@@ -1,0 +1,58 @@
+name: Go
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-20.04
+    env:
+      HOST: localhost
+      DBPORT: 5432
+      USER: root
+      PASSWORD: root
+      DBNAME: root
+    strategy:
+      matrix:
+        go_version: ['1.18.4'] # Versão específica do Go
+        os: ['ubuntu-20.04']   # Versão específica do Ubuntu
+    steps:
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ matrix.go_version }}
+    - uses: actions/checkout@v3
+
+  build:
+    needs: test
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.18.4' # Versão específica do Go
+    - uses: actions/checkout@v3
+    - name: Build
+      run: go build -v main.go
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        # Nome do artefato
+        name: programa
+        # Arquivo a ser carregado
+        path: main
+
+  docker:
+    needs: build
+    uses: ./.github/workflows/Docker.yml
+    secrets: inherit
+    
+  Deploy_EC2:
+    needs: build
+    uses: ./.github/workflows/EC2.yml
+    secrets: inherit
