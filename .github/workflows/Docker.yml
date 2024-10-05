@@ -40,4 +40,4 @@ jobs:
     # Push is a shorthand for --output=type=registry
         push: true
     # List of tags
-        tags: gabrielvrfreire/api-go-curso-cd-aws:${{github.ref_name}}
+        tags: gabrielvrfreire/go_ci:${{github.ref_name}}
